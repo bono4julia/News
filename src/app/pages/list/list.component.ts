@@ -12,6 +12,7 @@ import { NewsServices } from '../../services/news.service';
 export class ListComponent implements OnInit {
 
   news: News[];
+  oneNews: News;
 
   constructor(private newsService: NewsServices) {
    }
@@ -23,4 +24,10 @@ export class ListComponent implements OnInit {
     });
   }
 
+  showDetails(news: News) {
+    this.newsService.getOneNews(news.id)
+    .then((news: News) => {
+      return this.oneNews = news;
+    })
+  }
 }

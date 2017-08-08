@@ -2,5 +2,7 @@
   list works!
 </p>
 <ul>
-  <li *ngFor="let item of news">{{item.title}}</li>
+  <li *ngFor="let item of news" (click)="showDetails(item)">{{item.title}}</li>
+  {{oneNews.description}}
+  {{oneNews.category}}
 </ul>
