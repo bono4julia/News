@@ -5,10 +5,13 @@ import { AddRoutingRoutingModule } from './add-routing.module';
 
 import { AddComponent } from './add.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
-    AddRoutingRoutingModule
+    AddRoutingRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AddComponent

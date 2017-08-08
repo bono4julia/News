@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+import { News } from '../../models/news';
+
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'app-add',
@@ -7,9 +12,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
 
-  constructor() { }
+  newsForm: FormGroup;
+
+  constructor(
+    private navigationService: NavigationService,
+    private formBuilder: FormBuilder
+  ) {
+    this.createForm();
+  }
 
   ngOnInit() {
+  }
+  
+  onSubmit() {
+    console.log('Added!');
+  }
+
+  createForm() {
+    this.newsForm = this.formBuilder.group({
+      title: '',
+      description: ''
+    });
+  }
+
+  onGoBack() {
+    this.navigationService.goBack();
   }
 
 }

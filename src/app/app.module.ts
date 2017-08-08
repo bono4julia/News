@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { NewsServices } from './services/news.service';
+import { NavigationService } from './services/navigation.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,10 @@ import { NewsServices } from './services/news.service';
     AppRoutingModule,
     HttpModule
   ],
-  providers: [NewsServices],
+  providers: [
+    NewsServices,
+    NavigationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

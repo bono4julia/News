@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { News } from '../../models/news';
 
 import { NewsServices } from '../../services/news.service';
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'app-list',
@@ -12,22 +14,26 @@ import { NewsServices } from '../../services/news.service';
 export class ListComponent implements OnInit {
 
   news: News[];
-  oneNews: News;
 
-  constructor(private newsService: NewsServices) {
-   }
+  constructor(
+    private newsService: NewsServices,
+    private navigationService: NavigationService,
+    private router: Router) {
+  }
 
   ngOnInit() {
     this.newsService.getAllNews()
-    .then((news: News[]) => { 
-      return this.news = news
-    });
+      .then((news: News[]) => {
+        return this.news = news
+      });
   }
 
-  showDetails(news: News) {
-    this.newsService.getOneNews(news.id)
-    .then((news: News) => {
-      return this.oneNews = news;
-    })
+  goDetails(news: News): void {
+    this.navigationService.goDetails(news);
   }
+
+  onAdd() {
+    this.navigationService.goAdd();
+  }
+
 }

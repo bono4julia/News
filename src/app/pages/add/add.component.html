@@ -1,3 +1,18 @@
-<p>
-  add works!
-</p>
+<form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="title">Enter title:</label>
+    <input type="text" name="title" formControlName="title">
+  </div>
+
+  <div>
+    <label for="description">Enter description:</label>
+    <input type="text" name="description" formControlName="description">
+  </div>
+
+  <div>
+    <button type="submit">Add!</button>
+    <button type="" (click)="onGoBack()">Go Back</button>
+  </div>
+
+</form>

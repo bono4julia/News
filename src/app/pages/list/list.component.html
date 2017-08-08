@@ -2,7 +2,8 @@
   list works!
 </p>
 <ul>
-  <li *ngFor="let item of news" (click)="showDetails(item)">{{item.title}}</li>
-  {{oneNews.description}}
-  {{oneNews.category}}
+  <li *ngFor="let item of news" (click)="goDetails(item)">{{item.title}}</li>
 </ul>
+<div>
+  <button type="" (click)="onAdd()">Add News!</button>
+</div>
