@@ -1,9 +1,20 @@
-<p>
-  list works!
-</p>
-<ul>
-  <li *ngFor="let item of news" (click)="goDetails(item)">{{item.title}}</li>
-</ul>
 <div>
   <button type="" (click)="onAdd()">Add News!</button>
 </div>
+
+<select [(ngModel)]="filter.category">
+  <option 
+    *ngFor="let item of categoriesList"
+    [ngValue]="item">
+    {{item}}
+  </option>
+</select>
+
+<ul>
+  <li *ngFor="let item of (news | filterCategory: filter.category | range: filter.page)" (click)="goDetails(item)">{{item.title}}</li>
+</ul>
+
+<ngb-pagination aria-label="Default pagination"
+  [(page)]="filter.page"
+  [collectionSize]="(news | filterCategory: filter.category).length">
+</ngb-pagination>

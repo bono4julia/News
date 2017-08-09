@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { News } from '../../models/news';
+import { NewsFilter } from '../../models/news-filter';
 
 import { NewsServices } from '../../services/news.service';
 import { NavigationService } from '../../services/navigation.service';
+import { FilterStoreService } from '../../services/filter-store.service';
+
+import { categories } from '../../dictionaries/categories';
 
 @Component({
   selector: 'app-list',
@@ -13,18 +17,24 @@ import { NavigationService } from '../../services/navigation.service';
 })
 export class ListComponent implements OnInit {
 
-  news: News[];
+  news: News[] = [];
+  filter: NewsFilter = null;
+
+  categoriesList = categories;
 
   constructor(
     private newsService: NewsServices,
     private navigationService: NavigationService,
+    private filterStoreService: FilterStoreService,
     private router: Router) {
+      
   }
 
   ngOnInit() {
     this.newsService.getAllNews()
       .then((news: News[]) => {
-        return this.news = news
+        this.news = news;
+        this.filter = this.filterStoreService.filter;
       });
   }
 
@@ -35,5 +45,4 @@ export class ListComponent implements OnInit {
   onAdd() {
     this.navigationService.goAdd();
   }
-
 }

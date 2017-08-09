@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { NewsServices } from './services/news.service';
 import { NavigationService } from './services/navigation.service';
+import { FilterStoreService } from './services/filter-store.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NavigationService } from './services/navigation.service';
   ],
   providers: [
     NewsServices,
-    NavigationService
+    NavigationService,
+    FilterStoreService
   ],
   bootstrap: [AppComponent]
 })
