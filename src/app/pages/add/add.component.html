@@ -2,12 +2,24 @@
 
   <div>
     <label for="title">Enter title:</label>
-    <input type="text" name="title" formControlName="title">
+    <input type="text" name="title" formControlName="title">   
+  </div>
+
+  <div *ngIf="newsForm.controls['title'].invalid && (newsForm.controls['title'].dirty || isSubmitted)">
+    <span *ngIf="newsForm.controls['title'].errors.required">
+      Title is required!
+    </span>
   </div>
 
   <div>
     <label for="description">Enter description:</label>
-    <input type="text" name="description" formControlName="description">
+    <input type="text" name="description" formControlName="description">  
+  </div>
+
+  <div *ngIf="newsForm.controls['description'].invalid && (newsForm.controls['description'].dirty || isSubmitted)">
+    <span *ngIf="newsForm.controls['description'].errors.required">
+      Description is required!
+    </span>
   </div>
 
   <div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { News } from '../../models/news';
 
@@ -14,6 +14,7 @@ import { NewsServices } from '../../services/news.service';
 export class AddComponent implements OnInit {
 
   newsForm: FormGroup;
+  isSubmitted: boolean = false;
 
   constructor(
     private navigationService: NavigationService,
@@ -27,16 +28,24 @@ export class AddComponent implements OnInit {
   }
   
   onSubmit() {
+    this.isSubmitted = true;
+
+    if (this.newsForm.invalid) {
+      return;
+    }
+
     this.newsServices.addNews(this.newsForm.value.title, this.newsForm.value.description)
-    .then(() => {
-      this.onGoBack();
-    });
+      .then(() => {
+        this.onGoBack();
+        this.isSubmitted = false;
+      });
+      
   }
 
   createForm() {
     this.newsForm = this.formBuilder.group({
-      title: '',
-      description: ''
+      title: ['', [Validators.required]],
+      description: ['', [Validators.required]]
     });
   }
 
