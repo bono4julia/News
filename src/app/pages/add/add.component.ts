@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { News } from '../../models/news';
 
 import { NavigationService } from '../../services/navigation.service';
+import { NewsServices } from '../../services/news.service';
 
 @Component({
   selector: 'app-add',
@@ -16,7 +17,8 @@ export class AddComponent implements OnInit {
 
   constructor(
     private navigationService: NavigationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private newsServices: NewsServices
   ) {
     this.createForm();
   }
@@ -25,7 +27,10 @@ export class AddComponent implements OnInit {
   }
   
   onSubmit() {
-    console.log('Added!');
+    this.newsServices.addNews(this.newsForm.value.title, this.newsForm.value.description)
+    .then(() => {
+      this.onGoBack();
+    });
   }
 
   createForm() {
